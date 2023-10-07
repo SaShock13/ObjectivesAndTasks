@@ -19,6 +19,7 @@ namespace ObjectivesAndTasks
             InitializeComponent();
             
             var qr = QrCode.EncodeText("Hello, world!", QrCode.Ecc.Medium);
+
             qr.("hello-world-qr.png", 10, 3);
 
         }
