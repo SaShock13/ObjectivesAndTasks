@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+    
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ObjectivesAndTasks.MainPage">
+
+    <StackLayout  Margin="15,0,15,0">
+       
+        <Label x:Name="lblObjective" Text="{Binding Status}"
+               HorizontalOptions="Center" FontSize="Large" />
+        <ListView  x:Name="lvList" 
+                HasUnevenRows="True"
+                  ItemTapped="Tapped"
+                  RefreshControlColor="AliceBlue"
+                  
+                >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell  >
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Вверх"
+                            Command="{Binding Path=ListViewModel.MoveToTopCommand}" CommandParameter="{Binding}" />
+                            <MenuItem Text="Вниз"
+                            Command="{Binding Path=ListViewModel.MoveToBottomCommand}" CommandParameter="{Binding}" />
+                            <MenuItem Text="Удалить"
+                            Command="{Binding Path=ListViewModel.RemoveCommand}" CommandParameter="{Binding}" />
+                        </ViewCell.ContextActions>
+                        <ViewCell.View >
+                            <StackLayout >
+                                <StackLayout  Orientation="Horizontal">
+                                    <CheckBox x:Name="cbObjective" CheckedChanged="CheckedOrNot" IsChecked="{Binding isAchived}"  > </CheckBox>
+                                    <Label Text="{Binding Name}" FontSize="25"  />
+                                </StackLayout>
+                                
+                                <Label x:Name="lblDescription" Text="{Binding Description}" />
+                                <StackLayout  Margin="0,0,0,10"  Orientation="Horizontal">
+                                    <Label Text="Приоритет" />
+                                    <Label Text="{Binding Priority}" />
+                                </StackLayout>
+                                
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="btnDelete" Margin="0,20,0,0" Clicked="btnDeleteClicked" Text="Удалить"></Button>
+        <Button x:Name="btnAdd" Margin="0,0,0,30" Clicked="btnAddClicked" Text="Добавить"></Button>
+        
+        
+    </StackLayout>
+
+</ContentPage>
